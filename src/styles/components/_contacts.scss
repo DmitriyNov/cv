@@ -1,0 +1,62 @@
+@use '../base/variables' as *;
+@use '../utils/mixins' as *;
+
+.contacts__container {
+    color: $main-color;
+
+    @include flex($direction: column);
+    max-width: 320px;
+    min-height: calc(100vh - 80px);
+
+    @include adaptive('mobile') {
+        max-width: none;
+        min-height: 0;
+    }
+}
+
+.avatar__container {
+    position: relative;
+    height: 100%;
+
+    &::after {
+        @include arrow('/src/assets/icons/arrow.svg', 100%, 50%, translate(-50%, -98%));
+    }
+}
+
+.avatar {
+    max-width: 320px;
+    display: block;
+
+    @include adaptive('mobile') {
+        max-width: none;
+        width: 100%;
+    }
+}
+
+.contacts__block {
+    @include flex($direction: column, $gap: 40px, $flex: 1);
+    position: relative;
+    padding: 16px 24px 40px 24px;
+    background-color: $accent-color;
+    font-size: 20px;
+
+    @include adaptive('tablet') {
+        font-size: 1em;
+    }
+}
+
+.contacts__main {
+    @include flex($direction: column, $gap: 8px);
+}
+
+.contacts__info {
+    @include flex($direction: column, $gap: 20px);
+    
+    > a {
+        @include flex($items: center, $gap: 16px);
+    }
+
+    p {
+        word-break: break-word;
+    }
+}

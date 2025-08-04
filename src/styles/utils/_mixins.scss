@@ -1,0 +1,53 @@
+@use '../base/variables' as *;
+
+@mixin adaptive($breakpoint) {
+    @if not map-has-key($breakpoints, $breakpoint) {
+        @error "Брейкпоинт '#{$breakpoint}' не найден";
+    }    
+    
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+@mixin flex (
+    $direction: row,
+    $justify: flex-start,
+    $items: stretch,
+    $wrap: nowrap,
+    $gap: 0,
+    $flex: 0 1 auto,
+) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $items;
+    flex-wrap: $wrap;
+    gap: $gap;
+    flex: $flex;
+}
+
+@mixin pseudo(
+    $icon: '',
+    $top,
+    $left,
+    $transform: none,
+) {
+    content: '';
+    position: absolute;
+    background-image: url('#{$icon}');
+    top: $top;
+    left: $left;
+    transform: $transform;
+}
+
+@mixin arrow(
+    $icon,
+    $top,
+    $left,
+    $transform: none,
+) {
+    @include pseudo($icon, $top, $left, $transform);
+    width: 60px;
+    height: 19px;
+}

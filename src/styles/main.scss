@@ -1,0 +1,29 @@
+@use './base/reset' as *;
+@use './base/globals' as *;
+@use './base/fonts' as *;
+@use './base/variables' as *;
+@use './utils/mixins' as *;
+@use './components/contacts';
+@use './components/about';
+
+.app__container {
+  @include flex($justify: center);
+}
+
+.app {
+  @include flex($items: start, $gap: 30px);
+  position: relative;
+  margin: 40px;
+  max-width: 1440px;
+
+  @include adaptive('tablet') {
+    margin: 25px;
+  }
+
+  @include adaptive('mobile') {
+    flex-direction: column;
+    margin: 20px;
+    margin-bottom: 58px;
+    gap: 48px;
+  }
+}
