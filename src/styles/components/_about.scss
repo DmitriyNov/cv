@@ -14,25 +14,13 @@
         white-space: pre-line;
     }
 
-    ul {
-        list-style-type: none;
+    &--bold {
+        font-weight: 600;
     }
 
-    li {
-        padding-left: 24px;
-        background-image: url('/src/assets/icons/dot.svg');
-        background-position: 0 0;
-        background-size: 24px 24px;
-        background-repeat: no-repeat;
+    &--accent {
+        color: $accent-color;
     }
-}
-
-.about__text--bold {
-    font-weight: 600;
-}
-
-.about__text--accent {
-    color: $accent-color;
 }
 
 .about__info {
@@ -92,16 +80,51 @@
 
 .info__list {
     @include flex($direction: column, $gap: 8px);
-}
 
-.info__list--skills {
-    @include flex($wrap: wrap, $gap: 8px 32px);
+    &--skills {
+        @include flex($wrap: wrap, $gap: 8px 32px);
+    }
 }
 
 .info__item {
     @include flex($direction: column);
+    width: 80%;
     
     p:not(:first-child) {
         color: $muted-color;
+    }
+}
+
+.info__dropdown {
+    overflow: hidden;
+    height: 0;
+    opacity: 0.5;
+    transition: all 700ms ease-in-out;
+    font-size: 16px;
+    font-weight: 300;
+
+    &--container {
+        position: relative;
+        @include flex($direction: column, $gap: 8px);
+    }
+
+    &--active {
+       opacity: 1;
+    }
+
+    &--button {
+        position: absolute;
+        top: 0;
+        right: 8px;
+        cursor: pointer;
+        transition: transform 300ms ease-in-out;
+    }
+
+    &--buttonActive {
+        transform: rotate(-180deg);
+    }
+
+    @include adaptive('mobile') {
+        font-size: 14px;
     }
 }
